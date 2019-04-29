@@ -1,0 +1,24 @@
+{
+  "name": "marked-cli",
+  "version": "0.1.0",
+  "description": "Markdown to terminal",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "author": "A1rPun",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:A1rPun/marked-cli.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/A1rPun/marked-cli/issues"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "get-stdin": "^7.0.0",
+    "marked": "^0.6.2",
+    "meow": "^5.0.0"
+  }
+}
