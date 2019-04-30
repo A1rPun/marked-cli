@@ -7,7 +7,12 @@ module.exports = {
   // Block elements
   blockquote: quote => `${chalk.bgWhite(" ")} ${chalk.yellow(quote)}`,
   checkbox: checked => (checked ? "\u2611 " : "\u2610 "),
-  code: (code, infostring, escaped) => block(chalk.inverse(code)),
+  code: (code, infostring, escaped) => {
+    let codes = code.split("\n");
+    let max = Math.max(...codes.map(x => x.length));
+    codes = codes.map(x => x.padEnd(max)).join("\n");
+    return block(chalk.inverse(codes));
+  },
   heading: (text, level, raw, slugger) => block(chalk.red.underline(`${"#".repeat(level)} ${text}`)),
   hr: () => block(" ─── "),
   html: html => html,
