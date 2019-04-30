@@ -3,7 +3,7 @@
 const marked = require("marked");
 const getStdin = require("get-stdin");
 const meow = require("meow");
-const chalk = require("chalk");
+const terminal = require("./terminal");
 
 const cli = meow(
   `
@@ -29,12 +29,9 @@ if (input) {
   getStdin().then(init);
 }
 
-function processToken(token) {
-  return token.text;
-}
-
 function init(data) {
-  const markdown = marked.lexer(data)
-    .reduce((acc, token) => acc + processToken(token), '');
+  const renderer = new marked.Renderer();
+  Object.keys(terminal).forEach(fn => (renderer[fn] = terminal[fn]));
+  const markdown = marked(data, { renderer });
   console.log(markdown);
 }
