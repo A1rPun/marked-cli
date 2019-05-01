@@ -2,10 +2,27 @@ const chalk = require("chalk");
 
 const newline = "\n";
 const block = text => text + newline + newline;
+const width = process.stdout.columns - 4;
 
 module.exports = {
   // Block elements
-  blockquote: quote => `${chalk.bgWhite(" ")} ${chalk.yellow(quote)}`,
+  blockquote: quote => {
+    const prepend = chalk.bgWhite(" ") + " ";
+    let currentWidth = 0;
+    const block = quote.match(/\S+/g).reduce((acc, cur) => {
+      currentWidth += cur.length;
+      if (currentWidth > width) {
+        acc.push([cur]);
+	currentWidth = 0;
+      } else {
+	acc[acc.length - 1].push(cur);
+      }
+      currentWidth += cur.length;
+      return acc;
+    }, [[]]).map(x => x.join(" "))
+      .join(newline + prepend);
+    return prepend + chalk.yellow(block);
+  },
   checkbox: checked => (checked ? "\u2611 " : "\u2610 "),
   code: (code, infostring, escaped) => {
     let codes = code.split("\n");
@@ -13,7 +30,7 @@ module.exports = {
     codes = codes.map(x => x.padEnd(max)).join("\n");
     return block(chalk.inverse(codes));
   },
-  heading: (text, level, raw, slugger) => block(chalk.red.underline(`${"#".repeat(level)} ${text}`)),
+  heading: (text, level, raw, slugger) => block(chalk.red.bold.underline(`${"#".repeat(level)} ${text}`)),
   hr: () => block(" ─── "),
   html: html => html,
   list: (body, ordered, start) => body + newline,
