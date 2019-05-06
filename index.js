@@ -29,9 +29,15 @@ if (input) {
   getStdin().then(init);
 }
 
+function curry(fn) {
+  return function(...args) {
+    return fn.apply(this, args).replace(/&#39;/, "'");
+  };
+}
+
 function init(data) {
   const renderer = new marked.Renderer();
-  Object.keys(terminal).forEach(fn => (renderer[fn] = terminal[fn]));
+  Object.keys(terminal).forEach(fn => (renderer[fn] = curry(terminal[fn])));
   const markdown = marked(data, { renderer });
   console.log(markdown);
 }
