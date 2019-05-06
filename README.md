@@ -3,4 +3,8 @@ Simple markdown to terminal
 
 ## TODO
 
-- Blockquote fixed width
+- Header ascii
+- Emoji
+- Tables
+4. Numbered lists
+- Generic syntax highlighting

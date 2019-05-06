@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "description": "Markdown to terminal",
   "main": "index.js",
+  "scripts": {
+    "test": "exit 1"
+  },
+  "bin": {
+    "markdown": "index.js"
+  },
   "files": [
     "index.js"
   ],
@@ -11,10 +17,16 @@
     "type": "git",
     "url": "git@github.com:A1rPun/marked-cli.git"
   },
+  "keywords": [
+    "markdown",
+    "format",
+    "cli"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/A1rPun/marked-cli/issues"
   },
+  "homepage": "https://github.com/A1rPun/marked-cli#readme",
   "dependencies": {
     "chalk": "^2.4.2",
     "get-stdin": "^7.0.0",
