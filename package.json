@@ -1,6 +1,6 @@
 {
   "name": "marked-cli",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Markdown to terminal",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,8 @@
     "markdown": "index.js"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "terminal.js"
   ],
   "author": "A1rPun",
   "repository": {
