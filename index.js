@@ -29,9 +29,18 @@ if (input) {
   getStdin().then(init);
 }
 
+function decodeMarked(txt) {
+  return txt
+    .replace(/&#39;/, "'")
+    .replace(/&quot;/, '"')
+    .replace(/&amp;/, "&")
+    .replace(/&gt;/, ">")
+    .replace(/&lt;/, "<");
+}
+
 function curry(fn) {
   return function(...args) {
-    return fn.apply(this, args).replace(/&#39;/, "'");
+    return decodeMarked(fn.apply(this, args));
   };
 }
 
