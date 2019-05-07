@@ -3,16 +3,18 @@
 const marked = require("marked");
 const getStdin = require("get-stdin");
 const meow = require("meow");
+const fs = require('fs');
+const path = require('path');
 const terminal = require("./terminal");
 
 const cli = meow(
   `
   Usage
-    $ marked-cli [--limit=<number>]
+    $ marked-cli [filename]
   Options
     -v, --version     Show this help
   Examples
-    $ marked-cli
+    $ marked-cli README.md
     Hello world
 `,
   {
@@ -24,7 +26,8 @@ const cli = meow(
 
 const input = cli.input[0];
 if (input) {
-  init(input);
+  const fileName = path.join(process.cwd(), input);
+  init(fs.readFileSync(fileName, { encoding: 'utf8' }));
 } else {
   getStdin().then(init);
 }

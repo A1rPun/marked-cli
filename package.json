@@ -1,6 +1,6 @@
 {
   "name": "marked-cli",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Markdown to terminal",
   "main": "index.js",
   "scripts": {

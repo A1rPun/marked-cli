@@ -2,7 +2,13 @@
 
 > Simple markdown to terminal formatter
 
-## TODO
+## Install
+
+```
+$ npm i -g marked-cli
+```
+
+## Roadmap
 
 ### Must have
 
